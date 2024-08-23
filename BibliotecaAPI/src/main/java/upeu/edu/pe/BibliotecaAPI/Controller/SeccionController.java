@@ -42,7 +42,7 @@ public class SeccionController {
 	public ResponseEntity<Seccion> create(@Valid @RequestBody Seccion sec){
 		try {
 			Seccion s=seccionService.create(sec);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(s,HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,7 +53,7 @@ public class SeccionController {
 	public ResponseEntity<Seccion> getSeccionId(@PathVariable("id") Long id){
 		try {
 			Seccion c=seccionService.read(id);
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(c,HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

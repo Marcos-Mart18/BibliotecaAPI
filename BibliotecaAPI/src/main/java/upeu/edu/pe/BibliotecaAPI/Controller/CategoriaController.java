@@ -43,7 +43,7 @@ public class CategoriaController {
 	public ResponseEntity<Categoria> crear(@Valid @RequestBody Categoria cat){
 		try {
 			Categoria c= categoriaService.create(cat);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(c,HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

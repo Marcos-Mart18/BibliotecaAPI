@@ -42,7 +42,7 @@ public class LibroController {
 	public ResponseEntity<Libro> crear(@Valid @RequestBody Libro lib){
 		try {
 			Libro l=libroService.create(lib);
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<>(l,HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,7 +53,7 @@ public class LibroController {
 	public ResponseEntity<Libro> getLibroId(@PathVariable("id") Long id){
 		try {
 			Libro l= libroService.read(id);
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<>(l,HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

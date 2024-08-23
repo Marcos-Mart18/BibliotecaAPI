@@ -5,41 +5,44 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import upeu.edu.pe.BibliotecaAPI.Dao.CategoriaDao;
-import upeu.edu.pe.BibliotecaAPI.Entity.Categoria;
-import upeu.edu.pe.BibliotecaAPI.Service.CategoriaService;
+
+import upeu.edu.pe.BibliotecaAPI.Dao.LibroDao;
+import upeu.edu.pe.BibliotecaAPI.Entity.Libro;
+import upeu.edu.pe.BibliotecaAPI.Service.LibroService;
 @Service
-public class LibroServiceImpl implements CategoriaService{
+public class LibroServiceImpl implements LibroService{
+
 	@Autowired
-	private CategoriaDao categoriaDao;
+	private LibroDao libroDao;
 	@Override
-	public Categoria create(Categoria c) {
+	public Libro create(Libro l) {
 		// TODO Auto-generated method stub
-		return categoriaDao.create(c);
+		return libroDao.create(l);
 	}
 
 	@Override
-	public Categoria update(Categoria c) {
+	public Libro update(Libro l) {
 		// TODO Auto-generated method stub
-		return categoriaDao.update(c);
+		return libroDao.update(l);
 	}
 
 	@Override
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		categoriaDao.delete(id);
+		libroDao.delete(id);
 	}
 
 	@Override
-	public Categoria read(Long id) {
+	public Libro read(Long id) {
 		// TODO Auto-generated method stub
-		return categoriaDao.read(id);
+		return libroDao.read(id);
 	}
 
 	@Override
-	public List<Categoria> readAll() {
+	public List<Libro> readAll() {
 		// TODO Auto-generated method stub
-		return categoriaDao.readAll();
+		return libroDao.readAll();
 	}
+
 
 }
