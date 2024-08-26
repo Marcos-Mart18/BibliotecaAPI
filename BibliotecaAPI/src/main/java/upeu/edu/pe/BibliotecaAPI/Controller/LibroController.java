@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ import upeu.edu.pe.BibliotecaAPI.Entity.Libro;
 import upeu.edu.pe.BibliotecaAPI.Service.LibroService;
 
 @RestController
-@RequestMapping("/api/v1/Libros")
+@RequestMapping("/api/v1/libros")
 public class LibroController {
 
 	@Autowired
@@ -60,7 +61,7 @@ public class LibroController {
 		}
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Libro> delLibro(@PathVariable("id") Long id){
 		try {
 			libroService.delete(id);
@@ -71,11 +72,11 @@ public class LibroController {
 		}
 	}
 	
-	
+	@PutMapping("/{id}")
 	public ResponseEntity<Libro> updateLibro(@PathVariable("id") Long id, @Valid @RequestBody Libro lib){
 		Libro l=libroService.read(id);
 		if (l.getIdlibro()>0) {
-			return new ResponseEntity<>(libroService.update(l),HttpStatus.OK);
+			return new ResponseEntity<>(libroService.update(lib),HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}

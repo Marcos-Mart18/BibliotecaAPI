@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -38,7 +39,7 @@ public class Seccion {
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
-	@OneToMany(targetEntity = Libro.class, fetch = FetchType.LAZY, mappedBy = "seccion")
+	@OneToMany(targetEntity = Libro.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "seccion")
 	@JsonIgnore
 	private List<Libro> libros;
 }
