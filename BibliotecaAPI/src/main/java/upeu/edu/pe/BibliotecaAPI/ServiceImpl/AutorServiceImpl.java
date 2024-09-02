@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import upeu.edu.pe.BibliotecaAPI.Dao.AutorDAO;
+import upeu.edu.pe.BibliotecaAPI.Dao.AutorDao;
 import upeu.edu.pe.BibliotecaAPI.Entity.Autor;
 import upeu.edu.pe.BibliotecaAPI.Service.AutorService;
 
@@ -13,7 +13,7 @@ import upeu.edu.pe.BibliotecaAPI.Service.AutorService;
 public class AutorServiceImpl implements AutorService {
 	
 	@Autowired
-	private AutorDAO autorDAO;
+	private AutorDao autorDAO;
 	@Override
 	public Autor create(Autor a) {
 		// TODO Auto-generated method stub

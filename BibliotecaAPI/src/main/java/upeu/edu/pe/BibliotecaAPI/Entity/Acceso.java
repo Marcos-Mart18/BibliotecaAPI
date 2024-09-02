@@ -1,13 +1,11 @@
 package upeu.edu.pe.BibliotecaAPI.Entity;
 
-
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,25 +21,23 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "tbl_autores")
-public class Autor {
+@Table(name = "tbl_accesos")
+public class Acceso {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_autor")
-	private Long idAutor;
-	@Column(name = "nombres", columnDefinition = "varchar(50)")
-	private String nombres;
-	@Column(name = "apellidos",columnDefinition = "varchar(50)")
-	private String apellidos;
-	@Column(name = "pais",columnDefinition = "char(18)")
-	private String pais;
+	private Long idAcceso;
+	@Column(name = "titulo",columnDefinition = "varchar(40)")
+	private String titulo;
+	@Column(name = "icono",columnDefinition = "varchar(40)")
+	private String icono;
+	@Column(name = "url",columnDefinition = "varchar(40)")
+	private String url;
 	@Column(name = "estado",columnDefinition = "char(1)")
 	private char estado;
 	
 	
-	@OneToMany(targetEntity = LibroAutor.class, fetch = FetchType.LAZY, mappedBy = "autor")
+	@OneToMany(mappedBy = "acceso")
 	@JsonIgnore
-	private List<LibroAutor>libroAutores;
-	
+	private List<AccesoRol>accesoRoles;
 }

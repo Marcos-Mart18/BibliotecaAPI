@@ -7,11 +7,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,25 +24,27 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "tbl_autores")
-public class Autor {
-	
+@Table(name = "tbl_usuarios")
+public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_autor")
-	private Long idAutor;
-	@Column(name = "nombres", columnDefinition = "varchar(50)")
-	private String nombres;
-	@Column(name = "apellidos",columnDefinition = "varchar(50)")
-	private String apellidos;
-	@Column(name = "pais",columnDefinition = "char(18)")
-	private String pais;
+	private Long idUsuario;
+	@Column(name = "username",columnDefinition = "varchar(20)")
+	private String username;
+	@Column(name = "password",columnDefinition = "varchar(100)")
+	private String password;
 	@Column(name = "estado",columnDefinition = "char(1)")
 	private char estado;
 	
+		
+	@OneToOne
+	@JoinColumn(name = "id_empleado")
+	private Empleado empleado;
 	
-	@OneToMany(targetEntity = LibroAutor.class, fetch = FetchType.LAZY, mappedBy = "autor")
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
-	private List<LibroAutor>libroAutores;
+	private List<UsuarioRol>usuarioRoles;
+	
+	
 	
 }

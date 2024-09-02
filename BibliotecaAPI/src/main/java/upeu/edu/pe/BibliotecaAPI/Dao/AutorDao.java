@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import upeu.edu.pe.BibliotecaAPI.Entity.Autor;
 @Component
-public interface AutorDAO {
+public interface AutorDao {
 	Autor create(Autor a);
 	Autor update(Autor a);
 	void delete(Long id);

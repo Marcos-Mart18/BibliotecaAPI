@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import upeu.edu.pe.BibliotecaAPI.Dao.AutorDAO;
+import upeu.edu.pe.BibliotecaAPI.Dao.AutorDao;
 import upeu.edu.pe.BibliotecaAPI.Entity.Autor;
 import upeu.edu.pe.BibliotecaAPI.Repository.AutorRepository;
 
 @Component
-public class AutorDaoImpl implements AutorDAO {
+public class AutorDaoImpl implements AutorDao {
 	@Autowired
 	private AutorRepository autorRepository;
 	@Override
