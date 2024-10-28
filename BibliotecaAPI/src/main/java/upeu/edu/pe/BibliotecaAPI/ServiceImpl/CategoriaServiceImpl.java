@@ -42,4 +42,10 @@ public class CategoriaServiceImpl implements CategoriaService{
 		return categoriaDao.readAll();
 	}
 
+	@Override
+	public List<Categoria> searchCategoria(String filtro) {
+		// TODO Auto-generated method stub
+		return categoriaDao.searchCategoria(filtro);
+	}
+
 }

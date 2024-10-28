@@ -11,5 +11,6 @@ public interface UsuarioService {
 	Usuario update(Usuario u);
 	void delete(Long id);
 	Usuario read(Long id);
+	Usuario registarUsuarioRol(Long idUsuario,Long idRol);
 	List<Usuario>readAll();
 }

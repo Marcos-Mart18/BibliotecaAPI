@@ -12,4 +12,5 @@ public interface CategoriaDao {
 	void delete(Long id);
 	Categoria read(Long id);
 	List<Categoria>readAll();
+	List<Categoria>searchCategoria(String filtro);
 }

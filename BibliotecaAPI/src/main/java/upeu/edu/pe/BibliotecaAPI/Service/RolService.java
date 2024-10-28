@@ -11,5 +11,6 @@ public interface RolService {
 	Rol update(Rol r);
 	void delete(Long id);
 	Rol read(Long id);
+	Rol registrarAccesoRol(Long idRol, Long idAcceso);
 	List<Rol>readAll();
 }

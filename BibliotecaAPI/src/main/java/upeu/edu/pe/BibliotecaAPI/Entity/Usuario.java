@@ -1,17 +1,23 @@
 package upeu.edu.pe.BibliotecaAPI.Entity;
 
 
-import java.util.List;
+
+
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -40,11 +46,15 @@ public class Usuario {
 	@OneToOne
 	@JoinColumn(name = "id_empleado")
 	private Empleado empleado;
-	
-	@OneToMany(mappedBy = "usuario")
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "usuario_rol",
+			joinColumns = @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario"),
+			inverseJoinColumns = @JoinColumn(name="rol_id",referencedColumnName = "idRol")
+			)
 	@JsonIgnore
-	private List<UsuarioRol>usuarioRoles;
-	
+	private Set<Rol>roles = new HashSet<>();
 	
 	
 }

@@ -2,19 +2,20 @@ package upeu.edu.pe.BibliotecaAPI.Entity;
 
 
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +31,7 @@ import lombok.Setter;
 public class Libro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_libro")
-	private Long idlibro;
+	private Long idLibro;
 	@Column(name = "titulo", columnDefinition = "varchar(50)")
 	private String titulo;
 	@Column(name = "paginas", columnDefinition = "INTEGER")
@@ -54,9 +54,13 @@ public class Libro {
 	@JoinColumn(name = "id_editorial")
 	private Editorial editorial;
 	
-	@OneToMany(targetEntity = LibroAutor.class, fetch = FetchType.LAZY, mappedBy = "libro")
-	@JsonIgnore
-	private List<LibroAutor>libroAutores;
 	
-
+	@ManyToMany
+	@JoinTable(
+			name = "libro_autor",
+			joinColumns = @JoinColumn(name="libro_id",referencedColumnName = "idLibro"),
+			inverseJoinColumns = @JoinColumn(name="autor_id",referencedColumnName = "idAutor")
+			)
+	@JsonIgnore
+	private Set<Autor>autores=new HashSet<>();
 }

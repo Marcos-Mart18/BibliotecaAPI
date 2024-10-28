@@ -28,5 +28,5 @@ public class Editorial {
 	@Column(name = "estado",columnDefinition = "char(1)")
 	private char estado;
 	
-
+	
 }

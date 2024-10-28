@@ -1,17 +1,21 @@
-package upeu.edu.pe.BibliotecaAPI.Entity;
+			package upeu.edu.pe.BibliotecaAPI.Entity;
 
 
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +32,6 @@ public class Autor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_autor")
 	private Long idAutor;
 	@Column(name = "nombres", columnDefinition = "varchar(50)")
 	private String nombres;
@@ -39,9 +42,9 @@ public class Autor {
 	@Column(name = "estado",columnDefinition = "char(1)")
 	private char estado;
 	
-	
-	@OneToMany(targetEntity = LibroAutor.class, fetch = FetchType.LAZY, mappedBy = "autor")
-	@JsonIgnore
-	private List<LibroAutor>libroAutores;
+	@ManyToMany(mappedBy = "autores",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonBackReference
+	private Set<Libro>libros=new HashSet<>();
+
 	
 }

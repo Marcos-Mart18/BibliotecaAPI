@@ -43,4 +43,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioDao.readAll();
 	}
 
+	@Override
+	public Usuario registarUsuarioRol(Long idUsuario, Long idRol) {
+		// TODO Auto-generated method stub
+		return usuarioDao.registarUsuarioRol(idUsuario, idRol);
+	}
+
 }

@@ -42,4 +42,10 @@ public class CategoriaDaoImpl implements CategoriaDao{
 		return categoriaRepository.findAll();
 	}
 
+	@Override
+	public List<Categoria> searchCategoria(String filtro) {
+		// TODO Auto-generated method stub
+		return categoriaRepository.searchNative(filtro);
+	}
+
 }

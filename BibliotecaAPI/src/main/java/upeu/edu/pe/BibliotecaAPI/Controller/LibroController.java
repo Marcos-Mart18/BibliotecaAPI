@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import upeu.edu.pe.BibliotecaAPI.Service.LibroService;
 
 @RestController
 @RequestMapping("/api/v1/libros")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LibroController {
 
 	@Autowired
@@ -75,11 +77,17 @@ public class LibroController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Libro> updateLibro(@PathVariable("id") Long id, @Valid @RequestBody Libro lib){
 		Libro l=libroService.read(id);
-		if (l.getIdlibro()>0) {
+		if (l.getIdLibro()>0) {
 			return new ResponseEntity<>(libroService.update(lib),HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
+	}
+	
+	@PostMapping("/{idLibro}/autores/{idAutor}")
+	public ResponseEntity<Libro> createLibroAutor(@PathVariable Long idLibro,@PathVariable Long idAutor){
+		Libro li=libroService.registrarLibroAutor(idLibro, idAutor);
+		return ResponseEntity.ok(li);
 	}
 	
 }

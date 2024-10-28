@@ -81,4 +81,10 @@ public class UsuarioController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
+	
+	@PostMapping("/{idUsuario}/roles/{idRol}")
+	public ResponseEntity<Usuario>createUsuarioRol(@PathVariable Long idUsuario,@PathVariable Long idRol){
+		Usuario usu=usuarioService.registarUsuarioRol(idUsuario, idRol);
+		return ResponseEntity.ok(usu);
+	}
 }

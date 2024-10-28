@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import upeu.edu.pe.BibliotecaAPI.Dao.RolDao;
 import upeu.edu.pe.BibliotecaAPI.Entity.Rol;
 import upeu.edu.pe.BibliotecaAPI.Service.RolService;
@@ -41,6 +42,13 @@ public class RolServiceImpl implements RolService {
 	public List<Rol> readAll() {
 		// TODO Auto-generated method stub
 		return rolDao.readAll();
+	}
+
+	@Override
+	@Transactional
+	public Rol registrarAccesoRol(Long idRol, Long idAcceso) {
+		// TODO Auto-generated method stub
+		return rolDao.registrarAccesoRol(idRol, idAcceso);
 	}
 
 }

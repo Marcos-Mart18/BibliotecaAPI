@@ -11,5 +11,6 @@ public interface LibroDao {
 	Libro update(Libro l);
 	void delete(Long id);
 	Libro read(Long id);
+	Libro registrarLibroAutor(Long idLibro, Long idAutor);
 	List<Libro>readAll();
 }

@@ -44,5 +44,11 @@ public class LibroServiceImpl implements LibroService{
 		return libroDao.readAll();
 	}
 
+	@Override
+	public Libro registrarLibroAutor(Long idLibro, Long idAutor) {
+		// TODO Auto-generated method stub
+		return libroDao.registrarLibroAutor(idLibro, idAutor);
+	}
+
 
 }
