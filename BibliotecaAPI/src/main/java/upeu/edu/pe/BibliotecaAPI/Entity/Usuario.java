@@ -47,7 +47,7 @@ public class Usuario {
 	@JoinColumn(name = "id_empleado")
 	private Empleado empleado;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "usuario_rol",
 			joinColumns = @JoinColumn(name="usuario_id",referencedColumnName = "idUsuario"),

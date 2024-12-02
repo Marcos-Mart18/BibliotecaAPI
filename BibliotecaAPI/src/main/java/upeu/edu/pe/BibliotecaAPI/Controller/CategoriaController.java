@@ -77,15 +77,26 @@ public class CategoriaController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Categoria> updateCategoria(@PathVariable("id") Long id, @Valid @RequestBody Categoria cat){
-		Categoria c=categoriaService.read(id);
-		if (c.getIdCategoria()>0) {
-			return new ResponseEntity<>(categoriaService.update(cat),HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-		
+	public ResponseEntity<Categoria> updateCategoria(@PathVariable("id") Long id, @Valid @RequestBody Categoria cat) {
+	    try {
+	        // Leer la categoría por ID
+	        Categoria c = categoriaService.read(id);
+
+	        // Validar si la categoría existe
+	        if (c == null) {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Retorna 404 si no se encuentra
+	        }
+
+	        // Actualizar la categoría
+	        cat.setIdCategoria(id); // Asegurarse de que el ID esté configurado
+	        Categoria categoriaActualizada = categoriaService.update(cat);
+	        return new ResponseEntity<>(categoriaActualizada, HttpStatus.OK);
+	    } catch (Exception e) {
+	        // Manejo genérico de excepciones
+	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
 	}
+
 	
 	@GetMapping("/search")
     public ResponseEntity<List<Categoria>> buscarCategoria(@RequestParam String filtro) {
